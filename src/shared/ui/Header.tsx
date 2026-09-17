@@ -251,7 +251,7 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-5 flex items-center justify-between gap-4">
-        <NavLink to="/" className="flex items-center gap-3.5 cursor-pointer group">
+        <NavLink to="/" className="min-w-0 flex items-center gap-3.5 cursor-pointer group">
           <img src="/iicc_logo.webp" alt="IICC" className="w-20 h-auto sm:w-24 shrink-0 drop-shadow-xs" />
           <div className="min-w-0">
             <div className="flex items-baseline gap-2">

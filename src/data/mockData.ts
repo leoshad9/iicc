@@ -2,6 +2,7 @@ import {
   EventItem, 
   Venue, 
   GuestRoom, 
+  VenueAddOnCharge,
   NoticeItem, 
   TenderItem, 
   DepartmentContact, 
@@ -225,42 +226,97 @@ export const venuesData: Venue[] = [
   }
 ];
 
+/**
+ * Statutory tax rate published with every IICC tariff plan:
+ * CGST 9% + SGST 9%. Applies to room tariffs and venue charges alike.
+ */
+export const GST_RATE = 0.18;
+
+/** Additional bed charge published with the accommodation tariff plan. */
+export const guestRoomAdditionalBedTariff = 500;
+
+/**
+ * Official Accommodation (Hostel Rooms) tariff plan.
+ * Single occupancy ₹1,500 · Double occupancy ₹2,000 · Suite ₹3,000 ·
+ * Presidential suite ₹6,800 (per night, before CGST 9% + SGST 9%).
+ */
 export const guestRoomsData: GuestRoom[] = [
   {
-    id: 'gr-deluxe',
-    type: 'Deluxe Twin / King Guest Room',
-    count: 24,
-    tariffMember: 2400,
-    tariffNonMember: 3800,
-    description: 'Spacious 340 sq. ft. air-conditioned room with premium orthopaedic bedding, study desk, attached marble bathroom, LED TV, tea/coffee maker, and serene courtyard views.',
+    id: 'gr-single',
+    type: 'Single Occupancy Room',
+    typeUrdu: 'سنگل کمرہ (ایک فرد)',
+    occupancy: 'Single Occupancy',
+    occupancyUrdu: 'ایک فرد',
+    tariff: 1500,
+    description: 'Air-conditioned single room with a study desk, attached bathroom and quiet courtyard-facing aspect — suited to individual members, scholars and official visitors.',
     image: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80',
-    amenities: ['Free High-Speed Wi-Fi', 'Daily Housekeeping', '24/7 Room Service', 'Complimentary Breakfast at Dastarkhwan', 'Electronic Safe', 'Hot Water Geyser']
+    amenities: ['Air-Conditioned Room', 'Attached Bathroom with Hot Water', 'LED Television', 'High-Speed Wi-Fi', 'Tea / Coffee Maker', 'Daily Housekeeping']
+  },
+  {
+    id: 'gr-double',
+    type: 'Double Occupancy Room',
+    typeUrdu: 'ڈبل کمرہ (دو افراد)',
+    occupancy: 'Double Occupancy',
+    occupancyUrdu: 'دو افراد',
+    tariff: 2000,
+    description: 'Air-conditioned twin / double room for two guests, with attached bathroom, television and round-the-clock room service from the front desk.',
+    image: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=800&q=80',
+    amenities: ['Air-Conditioned Room', 'Twin / Double Bedding', 'Attached Bathroom with Hot Water', 'LED Television & Wi-Fi', 'Tea / Coffee Maker', '24-Hour Room Service']
   },
   {
     id: 'gr-suite',
-    type: 'Presidential / Executive Suite',
-    count: 8,
-    tariffMember: 4500,
-    tariffNonMember: 7000,
-    description: 'Luxurious two-room suite (580 sq. ft.) featuring a separate living parlor for receiving visitors, plush sofa suite, mini-refrigerator, dining nook, and panoramic garden views.',
+    type: 'Suite Room',
+    typeUrdu: 'سوٹ کمرہ',
+    occupancy: 'Suite Room',
+    occupancyUrdu: 'سوٹ',
+    tariff: 3000,
+    description: 'Suite accommodation with a separate sitting area for receiving visitors, king-size bedding and an attached bathroom — ideal for visiting speakers and delegations.',
     image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80',
-    amenities: ['Living Room & Visitor Anteroom', 'King Size Bed', 'Mini Bar & Tea Station', 'Bathtub & Premium Toiletries', 'Complimentary Laundry Allowance', 'Priority Booking Status']
+    amenities: ['Separate Sitting Area', 'King-Size Bedding', 'Attached Bathroom with Hot Water', 'LED Television & Wi-Fi', 'Mini Refrigerator / Tea Station', 'Daily Housekeeping']
+  },
+  {
+    id: 'gr-presidential-suite',
+    type: 'Presidential Suite Room',
+    typeUrdu: 'پریذیڈنشل سوٹ کمرہ',
+    occupancy: 'Presidential Suite',
+    occupancyUrdu: 'پریذیڈنشل سوٹ',
+    tariff: 6800,
+    description: 'The Centre\u2019s most expansive category: a two-room suite with a private living parlour, premium bedroom and priority attention from the hospitality desk.',
+    image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80',
+    amenities: ['Two-Room Suite with Living Parlour', 'Premium Bedroom & Seating', 'Attached Bathroom with Bathtub', 'LED Television & Wi-Fi', 'Mini Refrigerator / Tea Station', 'Priority Reservations Desk']
   }
 ];
 
+/**
+ * Venue add-ons and statutory charges published alongside the accommodation
+ * tariff plan ("Terms & Conditions as applicable"). All amounts are in INR and
+ * exclusive of CGST 9% + SGST 9%.
+ */
+export const venueAddOnCharges: VenueAddOnCharge[] = [
+  { id: 'addon-projector', item: 'Projector with Screen', itemUrdu: 'پروجیکٹر مع اسکرین', amount: 2500, basis: 'per event or as per requirement' },
+  { id: 'addon-sound', item: 'Sound System', itemUrdu: 'ساؤنڈ سسٹم', amount: 3000, basis: 'per event or as per requirement' },
+  { id: 'addon-microphone', item: 'Microphone', itemUrdu: 'مائیک', amount: 500, basis: 'per microphone' },
+  { id: 'addon-electricity-lawns', item: 'Electricity Charges — Lawns', itemUrdu: 'بجلی کے اخراجات — لان', amount: 10000, basis: 'per event' },
+  { id: 'addon-electricity-exhibition', item: 'Electricity Charges — Exhibition', itemUrdu: 'بجلی کے اخراجات — نمائش', amount: 10000, basis: 'per event' },
+  { id: 'addon-electricity-banquet', item: 'Electricity Charges — Banquet Hall', itemUrdu: 'بجلی کے اخراجات — بینکوئٹ ہال', amount: 5000, basis: 'per event' },
+  { id: 'addon-electricity-conference', item: 'Electricity Charges — Conference Complex', itemUrdu: 'بجلی کے اخراجات — کانفرنس کمپلیکس', amount: 2000, basis: 'per event' },
+  { id: 'addon-electricity-library-courtyard', item: 'Electricity Charges — Library Courtyard', itemUrdu: 'بجلی کے اخراجات — لائبریری صحن', amount: 2000, basis: 'per event' },
+  { id: 'addon-cleaning-lawns', item: 'Cleaning Charges — Lawns', itemUrdu: 'صفائی کے اخراجات — لان', amount: 10000, basis: 'per event' }
+];
+
 export const diningInfo = {
-  restaurantName: 'Dastarkhwan Restaurant',
-  restaurantUrdu: 'دسترخوان ریستوران',
-  tagline: 'Authentic Awadhi, Mughlai & Dum Pukht Culinary Heritage',
-  timing: 'Lunch: 12:30 PM - 03:30 PM | Dinner: 07:30 PM - 11:00 PM',
+  restaurantName: 'Dilli Dastarkhwan',
+  restaurantUrdu: 'دلی دسترخوان',
+  tagline: 'Royal Mughlai Cuisine · Managed by Karim’s',
+  timing: 'Lunch: 12 noon – 3 pm | Dinner: 7 pm – 11 pm',
   cafeName: 'Cultural Coffee Lounge & Book Cafe',
   cafeOfferings: 'Freshly roasted Arabica, traditional Kashmiri Kahwa, Sulaimani chai, samosas, and light confectionery alongside daily periodicals.',
   specialties: [
-    'Galawati & Kakori Kababs with Sheermal',
-    'Awadhi Dum Biryani (Mutton & Vegetable)',
-    'Nalli Nihari with Roghani Naan (Weekend Breakfast)',
-    'Paneer Pasanda & Dal Bukhara',
-    'Shahi Tukda & Kesar Phirni'
+    'Murgh Malai Tikka',
+    'Murgh Biryani Achari',
+    'Makhani Murgh (Butter Chicken)',
+    'Shahi Paneer & Makhani Daal',
+    'Shahi Tukra & Kheer Benazeer'
   ],
   images: [
     'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',

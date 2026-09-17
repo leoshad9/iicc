@@ -49,15 +49,34 @@ export interface Venue {
   features: string[];
 }
 
+/**
+ * Guest room category from the official Accommodation (Hostel Rooms) tariff plan
+ * (https://www.iiccentre.com/hostel-rooms.php). `tariff` is the published nightly
+ * rate in INR, exclusive of CGST 9% + SGST 9% (see `GST_RATE`).
+ */
 export interface GuestRoom {
   id: string;
   type: string;
-  count: number;
-  tariffMember: number;
-  tariffNonMember: number;
+  typeUrdu?: string;
+  /** Published tariff-plan label, e.g. 'Single Occupancy'. */
+  occupancy: string;
+  occupancyUrdu?: string;
+  /** Nightly tariff in INR, before statutory taxes. */
+  tariff: number;
   description: string;
   image: string;
   amenities: string[];
+}
+
+/** Optional add-on or statutory charge published with the tariff plan. */
+export interface VenueAddOnCharge {
+  id: string;
+  item: string;
+  itemUrdu?: string;
+  /** Charge in INR, before CGST 9% + SGST 9%. */
+  amount: number;
+  /** Billing basis, e.g. 'per microphone'. */
+  basis: string;
 }
 
 export interface NoticeItem {

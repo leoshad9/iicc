@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   BedDouble, 
   Utensils, 
@@ -13,7 +14,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { Language, GuestRoom } from '../../shared/types';
-import { guestRoomsData, diningInfo, libraryInfo } from '../../data/mockData';
+import { GST_RATE, guestRoomAdditionalBedTariff, guestRoomsData, diningInfo, libraryInfo } from '../../data/mockData';
 import { translations } from '../../data/translations';
 import { useTranslation } from 'react-i18next';
 
@@ -32,10 +33,11 @@ export const AmenitiesSection: React.FC<AmenitiesSectionProps> = () => {
     email: '',
     checkIn: '2026-10-10',
     checkOut: '2026-10-12',
-    roomsCount: '1',
-    isMember: true,
-    memberId: ''
+    roomsCount: '1'
   });
+
+  /** Applies the published statutory rate (CGST 9% + SGST 9%) to a base amount. */
+  const withGst = (amount: number) => Math.round(amount * (1 + GST_RATE));
 
   // Library catalog search
   const [catalogQuery, setCatalogQuery] = useState('');
@@ -65,9 +67,7 @@ export const AmenitiesSection: React.FC<AmenitiesSectionProps> = () => {
         email: '',
         checkIn: '2026-10-10',
         checkOut: '2026-10-12',
-        roomsCount: '1',
-        isMember: true,
-        memberId: ''
+        roomsCount: '1'
       });
     }, 2800);
   };
@@ -130,11 +130,19 @@ export const AmenitiesSection: React.FC<AmenitiesSectionProps> = () => {
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-blue-800 shrink-0" />
                 <span>
-                  <strong>Lodhi Road Guest Wing:</strong> 32 tastefully furnished air-conditioned rooms and suites with 24/7 security, room service, and direct proximity to cultural events.
+                  <strong>Lodhi Road Guest Wing:</strong> air-conditioned rooms and suites in four published categories, with round-the-clock front desk, room service and direct proximity to cultural events. Room tariffs are exclusive of CGST 9% + SGST 9%.
                 </span>
               </div>
-              <div className="font-semibold text-amber-900">
-                Front Desk Direct: +91 9717455353 / 011-43535353
+              <div className="flex flex-col sm:items-end gap-1">
+                <span className="font-semibold text-amber-900">
+                  Front Desk Direct: +91 9717455353 / 011-43535353
+                </span>
+                <Link
+                  to="/services/guest-room"
+                  className="text-[11px] font-bold text-[#1e3a8a] hover:underline"
+                >
+                  View full tariff plan &amp; availability →
+                </Link>
               </div>
             </div>
 
@@ -145,7 +153,7 @@ export const AmenitiesSection: React.FC<AmenitiesSectionProps> = () => {
                     <div className="relative h-60 bg-stone-100">
                       <img src={room.image} alt={room.type} className="w-full h-full object-cover" />
                       <div className="absolute top-3 left-3 bg-[#1e3a8a] text-amber-300 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">
-                        {room.count} Rooms Available
+                        {currentLang === 'ur' && room.occupancyUrdu ? room.occupancyUrdu : room.occupancy}
                       </div>
                     </div>
 
@@ -176,15 +184,15 @@ export const AmenitiesSection: React.FC<AmenitiesSectionProps> = () => {
                   <div className="p-6 pt-0">
                     <div className="bg-stone-50 p-4 rounded-xl border border-stone-200 flex items-center justify-between mb-4">
                       <div>
-                        <div className="text-[11px] text-stone-500">Member Tariff / Night:</div>
+                        <div className="text-[11px] text-stone-500">Tariff / Night (before tax):</div>
                         <div className="text-lg font-bold font-serif-title text-blue-900">
-                          ₹ {room.tariffMember.toLocaleString()}
+                          ₹ {room.tariff.toLocaleString()}
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-[11px] text-stone-500">Non-Member:</div>
+                        <div className="text-[11px] text-stone-500">Incl. CGST+SGST:</div>
                         <div className="text-sm font-bold text-stone-700">
-                          ₹ {room.tariffNonMember.toLocaleString()}
+                          ₹ {withGst(room.tariff).toLocaleString()}
                         </div>
                       </div>
                     </div>
@@ -219,7 +227,7 @@ export const AmenitiesSection: React.FC<AmenitiesSectionProps> = () => {
                       {diningInfo.restaurantName}
                     </h3>
                     <p className="text-xs text-stone-200 mt-0.5">
-                      {currentLang === 'ur' ? diningInfo.restaurantUrdu : 'Authentic Awadhi & Mughlai Heritage Cuisine'}
+                      {currentLang === 'ur' ? diningInfo.restaurantUrdu : diningInfo.tagline}
                     </p>
                   </div>
                 </div>
@@ -231,7 +239,7 @@ export const AmenitiesSection: React.FC<AmenitiesSectionProps> = () => {
                     <Clock className="w-4 h-4 text-blue-800" />
                     <span><strong>Operating Hours:</strong> {diningInfo.timing}</span>
                   </div>
-                  <span className="font-semibold text-blue-800">Open Daily</span>
+                  <span className="font-semibold text-blue-800">Karim’s</span>
                 </div>
 
                 <div>
@@ -248,9 +256,9 @@ export const AmenitiesSection: React.FC<AmenitiesSectionProps> = () => {
                   </div>
                 </div>
 
-                <div className="pt-2 text-xs text-stone-500 flex items-center justify-between border-t border-stone-100">
-                  <span>Reservations & Takeaway Desk: 011-43535350</span>
-                  <span className="text-blue-800 font-bold">Dine-in with Mughal Garden View</span>
+                <div className="pt-2 text-xs text-stone-500 flex flex-wrap gap-4 items-center justify-between border-t border-stone-100">
+                  <span>{currentLang === 'ur' ? 'مرکزی ہال: 78 نشستیں · نجی کمرہ: 12 نشستیں' : 'Main dining: 78 seats · Private dining: 12 seats'}</span>
+                  <Link to="/services/restaurant" className="inline-flex items-center gap-2 text-[#1e3a8a] font-bold hover:underline">{currentLang === 'ur' ? 'ریستوران اور مکمل مینو' : 'Explore restaurant & full menu'}<ArrowRight className="w-4 h-4" /></Link>
                 </div>
               </div>
             </div>
@@ -408,7 +416,7 @@ export const AmenitiesSection: React.FC<AmenitiesSectionProps> = () => {
                     Enquire for {selectedRoom.type}
                   </h3>
                   <p className="text-xs text-stone-500 mb-4">
-                    Member Tariff: ₹{selectedRoom.tariffMember} / night · Standard: ₹{selectedRoom.tariffNonMember}
+                    Tariff: ₹{selectedRoom.tariff.toLocaleString()} / night · ₹{withGst(selectedRoom.tariff).toLocaleString()} incl. CGST 9% + SGST 9%
                   </p>
 
                   <form onSubmit={handleRoomEnquiry} className="space-y-3">
@@ -472,32 +480,9 @@ export const AmenitiesSection: React.FC<AmenitiesSectionProps> = () => {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2 pt-1">
-                      <input
-                        type="checkbox"
-                        id="is-member-check"
-                        checked={roomForm.isMember}
-                        onChange={(e) => setRoomForm({...roomForm, isMember: e.target.checked})}
-                        className="rounded text-blue-800"
-                      />
-                      <label htmlFor="is-member-check" className="text-xs text-stone-700">
-                        Applying under IICC Member Subsidy Rate
-                      </label>
+                    <div className="p-3 rounded-lg bg-blue-50/60 border border-blue-200/60 text-[11px] text-blue-950">
+                      Tariffs are uniform for members and guests. Additional bed: ₹{guestRoomAdditionalBedTariff.toLocaleString()} per night + GST.
                     </div>
-
-                    {roomForm.isMember && (
-                      <div>
-                        <label className="text-xs font-semibold text-stone-700 block mb-1">Membership ID *</label>
-                        <input
-                          required
-                          type="text"
-                          value={roomForm.memberId}
-                          onChange={(e) => setRoomForm({...roomForm, memberId: e.target.value})}
-                          placeholder="e.g. IICC-LM-1092"
-                          className="w-full px-3 py-2 text-xs rounded-lg border border-stone-300"
-                        />
-                      </div>
-                    )}
 
                     <div className="pt-2 flex justify-end gap-2">
                       <button
