@@ -306,9 +306,11 @@ export const videosData: VideoItem[] = [
     category: 'Poetry & Music',
     speaker: 'India Islamic Cultural Centre Delhi',
     duration: '1h 15m',
-    // Seminar recording is not on YouTube yet: no `youtubeId`, so this card is
-    // shown as "not published yet" instead of embedding the old dead placeholder.
-    thumbnail: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
+    // Verified 2026-09-17 via oEmbed: uploader "bhopal nris". This is external
+    // coverage of a Mirza Bedil poetry session, not the IICC seminar recording
+    // itself, which is why the event metadata above still names IICC as host.
+    thumbnail: youtubeThumbnailUrl('SqYUH4UxZ3U'),
+    youtubeId: 'SqYUH4UxZ3U',
     description: 'Two-day seminar on the life and poetry of Mirza Abdul Qadir Bedil, the great Persian poet.'
   },
   {
@@ -340,8 +342,9 @@ export const videosData: VideoItem[] = [
     category: 'Cultural',
     speaker: 'Daily Salar Urdu Digital',
     duration: '8m',
-    // No verified YouTube ID supplied yet (previous placeholder was dead):
-    // keep the card, render it as "not published yet".
+    // "dailysalardigital" is the channel handle, not a video ID: YouTube oEmbed
+    // rejects it with HTTP 400, so it cannot be embedded. Card stays
+    // "not published yet" until Daily Salar's actual video ID is confirmed.
     thumbnail: 'https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&w=800&q=80',
     description: 'Exhibition showcasing the rich heritage of calligraphy art at IICC.'
   },
@@ -350,12 +353,13 @@ export const videosData: VideoItem[] = [
     title: 'Operation sindoor को Salute',
     titleUrdu: 'آپریشن سندور کو سلام',
     category: 'Patriotic',
-    speaker: 'Media 24x7',
+    // Verified 2026-09-17 via oEmbed: the recording is CNN-News18's documentary,
+    // so the speaker label was corrected from "Media 24x7" to match the source.
+    speaker: 'CNN-News18',
     duration: '6m',
-    // No verified YouTube ID supplied yet (previous placeholder was dead):
-    // keep the card, render it as "not published yet".
-    thumbnail: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80',
-    description: 'Tribute to Operation Sindoor covered by Media 24x7.'
+    thumbnail: youtubeThumbnailUrl('5RFGBa5_Afc'),
+    youtubeId: '5RFGBa5_Afc',
+    description: 'CNN-News18 special documentary on Operation Sindoor: the 88 hours that redefined India.'
   }
 ];
 
