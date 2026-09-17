@@ -150,19 +150,22 @@ export const upcomingEvents: EventItem[] = [
 
 export const venuesData: Venue[] = [
   {
+    // Official B S Abdur Rahman Auditorium tariff plan (auditorium.php):
+    // shift tariffs below; hourly fields map to the additional-hour rate and
+    // day fields to the full-day rate so the shared estimator stays consistent.
     id: 'v-auditorium',
-    name: 'Auditorium (Hakeem Abdul Hameed Hall)',
-    nameUrdu: 'آڈیٹوریم (حکیم عبدالحمید ہال)',
-    capacity: '500 Persons',
-    dimensions: '4,800 sq. ft. · Air-Conditioned',
-    description: 'Acoustically treated world-class auditorium equipped with JBL Pro line array sound, state-of-the-art motorized stage lighting, HD projection, green rooms, and VIP lounge access.',
+    name: 'B S Abdur Rahman Auditorium',
+    nameUrdu: 'بی ایس عبدالرحمن آڈیٹوریم',
+    capacity: '300 Persons · Theater Style',
+    dimensions: '32 × 24 ft Stage · Air-Conditioned',
+    description: 'State-of-the-art auditorium for conferences, seminars, lectures, theatrical performances and cultural activities, with advanced audio-visual equipment, two fully equipped green rooms and a lobby for registration or display counters.',
     image: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80',
-    bestFor: 'National Conferences, Convocation, International Seminars, Mushairas, Theatrical Performances',
-    hourlyTariffMember: 9500,
-    hourlyTariffStandard: 14000,
-    dayTariffMember: 65000,
-    dayTariffStandard: 95000,
-    features: ['Line Array Sound System', 'Motorized Cyclorama & Stage Lights', 'Green Rooms for Guests', 'Dedicated VIP Foyer', 'Podium & Wireless Microphones']
+    bestFor: 'Conferences, Seminars, Lectures, Theatrical Performances, Cultural Activities',
+    hourlyTariffMember: 3500,
+    hourlyTariffStandard: 4000,
+    dayTariffMember: 30000,
+    dayTariffStandard: 38000,
+    features: ['Theater-Style Seating for 300', '32 × 24 ft Stage', 'Advanced Audio-Visual Equipment', 'Two Fully Equipped Green Rooms', 'Lobby for Registration Counters']
   },
   {
     id: 'v-lawns',
@@ -323,6 +326,21 @@ export const diningInfo = {
     'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80'
   ]
 };
+export const coffeeShopVideo = {
+  youtubeId: 'UFlRc_Zk4UQ',
+  title: 'The Coffee Shop | IICC | India Islamic Cultural Centre | Lodhi Road | New Delhi',
+  author: 'Manoj Jha'
+};
+
+export const coffeeShopInfo = {
+  name: 'The Coffee Shop',
+  nameUrdu: 'کفے شاپ',
+  posterImage: 'https://images.unsplash.com/photo-1554508618-2e8e1219a138?auto=format&fit=crop&w=800&q=80',
+  vibe: 'A quiet, refined coffee lounge for conversation, reading and a pause between commitments.',
+  vibeUrdu: 'ایک پرسکون اور بہترین کفے شاپ جہاں آپ بات چیت کر سکتے ہیں، کچھ پڑھ سکتے ہیں، اور اپنے کاموں کے درمیان ایک مختہر کا لطف اٹھا سکتے ہیں۔',
+  menuHint: 'Coffee, tea, light refreshments and periodicals in a relaxed setting.',
+  menuHintUrdu: 'کفے، چائے، ہلکی refreshments اور روزانہ کی میگزین ایک آرام دہ ماحول میں۔'
+};
 
 export const libraryInfo = {
   title: 'Allama Iqbal & Maulana Azad Reference Library',
@@ -339,6 +357,7 @@ export const libraryInfo = {
     { name: 'Current Periodicals & Research Journals', count: '45 subscriptions' }
   ]
 };
+
 
 // Broadcast hub entries. `youtubeId` must be a verified public YouTube ID
 // (see src/shared/utils/youtube.ts) — never a placeholder. Cards without a
