@@ -1,0 +1,8 @@
+{
+  "name": "India Islamic Cultural Centre",
+  "description": "Comprehensive institutional portal for the India Islamic Cultural Centre (IICC), featuring bilingual English/Urdu support, accessibility scaling, president's vision statement, events calendar & RSVP, venue booking tariff calculator, guest rooms & dining amenities, OPAC library catalog, multimedia broadcasts, membership portals, official notice board, and direct helpline directory.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

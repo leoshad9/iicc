@@ -1,0 +1,48 @@
+name: Deploy IICC to EC2
+
+on:
+  push:
+    branches: [dev]
+
+permissions:
+  contents: read
+
+env:
+  EC2_HOST: 3.25.235.10
+  EC2_USER: ec2-user
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Clean stale dist folders
+        run: find . -name dist -type d -not -path "./dist" -exec rm -rf {} +
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/iicc.pem
+          chmod 600 ~/.ssh/iicc.pem
+          ssh-keyscan -H ${{ env.EC2_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Copy to EC2
+        run: |
+          scp -i ~/.ssh/iicc.pem -o StrictHostKeyChecking=no -r dist/ ${{ env.EC2_USER }}@${{ env.EC2_HOST }}:/tmp/iicc-dist
+
+      - name: Deploy on EC2
+        run: |
+          ssh -i ~/.ssh/iicc.pem -o StrictHostKeyChecking=no ${{ env.EC2_USER }}@${{ env.EC2_HOST }} 'bash -s' < deploy/deploy-ec2.sh

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 560" width="100%" height="100%">
+  <!-- Definitions for clean styling -->
+  <defs>
+    <!-- Sun Ray Angle Helper Pattern -->
+    <style>
+      .navy-text { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-weight: 700; fill: #15195b; }
+      .sub-text { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-weight: 500; fill: #15195b; }
+    </style>
+  </defs>
+
+  <!-- BACKGROUND: Transparent -->
+  <g id="iicc-emblem" transform="translate(0, 10)">
+    <!-- LEFT PILLAR 1: Cyan square dot on top, Purple rectangle below -->
+    <rect x="42" y="32" width="24" height="24" rx="2" fill="#008ecc" />
+    <rect x="42" y="74" width="24" height="206" rx="2" fill="#583186" />
+
+    <!-- LEFT PILLAR 2: Purple square dot on top, Cyan rectangle below -->
+    <rect x="90" y="32" width="24" height="24" rx="2" fill="#583186" />
+    <rect x="90" y="74" width="24" height="206" rx="2" fill="#008ecc" />
+
+    <!-- CRESCENT 1 (OUTER "C"): Center at (320, 155), Radius ~ 160 -->
+    <!-- Upper Purple Arc -->
+    <path d="M 235 56 A 148 148 0 0 1 390 32 L 400 48 A 168 168 0 0 0 225 76 Z" fill="#008ecc" />
+    <path d="M 180 96 A 150 150 0 0 1 235 56 L 225 76 A 168 168 0 0 0 166 122 Z" fill="#fffb00" />
+    <path d="M 148 175 A 150 150 0 0 1 180 96 L 166 122 A 168 168 0 0 0 148 175 Z" fill="#583186" />
+    <path d="M 148 175 A 150 150 0 0 0 180 254 L 166 228 A 168 168 0 0 1 148 175 Z" fill="#583186" />
+    <path d="M 180 254 A 150 150 0 0 0 235 294 L 225 274 A 168 168 0 0 1 166 228 Z" fill="#fffb00" />
+    <path d="M 235 294 A 148 148 0 0 0 390 318 L 400 302 A 168 168 0 0 1 225 274 Z" fill="#008ecc" />
+
+    <!-- CRESCENT 2 (INNER "C"): Center at (330, 175), Radius ~ 120 -->
+    <path d="M 270 94 A 114 114 0 0 1 385 70 L 392 84 A 130 130 0 0 0 262 110 Z" fill="#583186" />
+    <path d="M 242 126 A 114 114 0 0 1 270 94 L 262 110 A 130 130 0 0 0 230 148 Z" fill="#fffb00" />
+    <path d="M 204 175 A 114 114 0 0 1 242 126 L 230 148 A 130 130 0 0 0 204 175 Z" fill="#008ecc" />
+    <path d="M 204 175 A 114 114 0 0 0 242 224 L 230 202 A 130 130 0 0 1 204 175 Z" fill="#008ecc" />
+    <path d="M 242 224 A 114 114 0 0 0 270 256 L 262 240 A 130 130 0 0 1 230 202 Z" fill="#fffb00" />
+    <path d="M 270 256 A 114 114 0 0 0 385 280 L 392 266 A 130 130 0 0 1 262 240 Z" fill="#583186" />
+
+    <!-- THE GOLDEN SUNBURST (Center at x=348, y=175) -->
+    <g transform="translate(348, 175)">
+      <!-- Central Sun Disc -->
+      <circle cx="0" cy="0" r="44" fill="#ffee00" stroke="#f5d000" stroke-width="2" />
+      
+      <!-- 24 Radiating Rays -->
+      <!-- We generate triangular rays pointing outward -->
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(15)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(30)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(45)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(60)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(75)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(90)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(105)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(120)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(135)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(150)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(165)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(180)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(195)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(210)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(225)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(240)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(255)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(270)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(285)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(300)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(315)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(330)" />
+      <path d="M -5 -44 L 0 -105 L 5 -44 Z" fill="#ffee00" transform="rotate(345)" />
+
+      <!-- Center Inner Radiance Disc -->
+      <circle cx="0" cy="0" r="40" fill="#fff533" />
+    </g>
+  </g>
+
+  <!-- OFFICIAL TYPOGRAPHY UNDERNEATH -->
+  <text x="250" y="420" text-anchor="middle" class="navy-text" font-size="30" letter-spacing="-0.5">India Islamic Cultural Centre</text>
+  <text x="250" y="465" text-anchor="middle" class="sub-text" font-size="28" letter-spacing="0.5">New Delhi</text>
+</svg>

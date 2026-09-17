@@ -66,6 +66,10 @@ export const translations = {
       sectionTitle: 'Multimedia & Visual Gallery',
       videos: 'Broadcast & Video Hub',
       gallery: 'Events Photo Gallery',
+      watchRecording: 'Watch Recording',
+      watchOnYouTube: 'Watch on YouTube',
+      recordingPending: 'Recording not published yet',
+      close: 'Close',
     },
     helplines: {
       title: 'Departmental Helpline Directory',
@@ -149,6 +153,10 @@ export const translations = {
       sectionTitle: 'ملٹی میڈیا اور تصویری نگارخانہ',
       videos: 'یوٹیوب ویڈیو نشریات',
       gallery: 'تقاریب کی تصاویر',
+      watchRecording: 'ریکارڈنگ دیکھیں',
+      watchOnYouTube: 'یوٹیوب پر دیکھیں',
+      recordingPending: 'ریکارڈنگ ابھی شائع نہیں ہوئی',
+      close: 'بند کریں',
     },
     helplines: {
       title: 'شعبہ جاتی ہیلپ لائنز ڈائرکٹری',
